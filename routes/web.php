@@ -32,8 +32,10 @@ Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard')
 
 Route::get('/register',[RegisterController::class,'index'])->name('register');
 Route::post('/register',[RegisterController::class,'store']);
+
 Route::get('/post',[PostController::class,'index'])->name('post');
 Route::post('/post',[PostController::class,'store']);
+Route::delete('/post/{post}',[PostController::class,'destroy'])->name('post.destroy');
 
 
 Route::post('/posts/{post}/likes',[PostLikeController::class,'store'])->name('posts.likes');

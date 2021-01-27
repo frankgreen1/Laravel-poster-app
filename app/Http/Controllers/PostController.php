@@ -14,6 +14,14 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post
+        ]);
+    }
+
+
     public function store(Request $request)
     {
             $this->validate($request,[
@@ -22,6 +30,7 @@ class PostController extends Controller
             $request->user()->posts()->create($request->only('body'));
           return back();
     }
+
     public function destroy(Post $post)
     {
          $this->authorize('delete',$post);

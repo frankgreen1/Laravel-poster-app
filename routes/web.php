@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
+use App\Http\Controllers\UserPostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,9 +35,12 @@ Route::get('/register',[RegisterController::class,'index'])->name('register');
 Route::post('/register',[RegisterController::class,'store']);
 
 Route::get('/post',[PostController::class,'index'])->name('post');
+Route::get('/post/{post}',[PostController::class,'show'])->name('posts.show');
 Route::post('/post',[PostController::class,'store']);
 Route::delete('/post/{post}',[PostController::class,'destroy'])->name('post.destroy');
 
 
 Route::post('/posts/{post}/likes',[PostLikeController::class,'store'])->name('posts.likes');
 Route::delete('/posts/{post}/likes',[PostLikeController::class,'destroy'])->name('posts.likes');
+
+Route::get('/users/{user:username}/posts',[UserPostController::class,'index'])->name('users.posts');
